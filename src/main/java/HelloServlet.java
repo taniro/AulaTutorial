@@ -44,6 +44,10 @@ public class HelloServlet extends HttpServlet {
 		String cliente = req.getParameter("nome");
 		resp.getWriter().println("Ola, " + cliente);
 
+		System.out.println(System.getenv("DATABASE_URL"));
+
+		/*
+
 		Connection connection = null;
 		try {
 			connection = ConectaBanco.getConnection();
@@ -61,7 +65,7 @@ public class HelloServlet extends HttpServlet {
 			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
