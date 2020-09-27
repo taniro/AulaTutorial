@@ -56,7 +56,7 @@ public class HelloServlet extends HttpServlet {
 		}else{
 			resp.getWriter().append("A conexão com o banco falhou!");
 		}
-		
+
 		try {
 			connection.close();
 		} catch (SQLException e) {
