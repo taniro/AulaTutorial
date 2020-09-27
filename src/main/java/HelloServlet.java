@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/HelloServlet", "/Aula"})
 public class HelloServlet extends HttpServlet {
@@ -41,6 +43,25 @@ public class HelloServlet extends HttpServlet {
 
 		String cliente = req.getParameter("nome");
 		resp.getWriter().println("Ola, " + cliente);
+
+		Connection connection = null;
+		try {
+			connection = ConectaBanco.getConnection();
+		} catch (SQLException ex) {
+			resp.getWriter().append("Connection Failed! Check output console");
+		}
+
+		if(connection!= null){
+			resp.getWriter().append("A conexão com o banco foi realizada!");
+		}else{
+			resp.getWriter().append("A conexão com o banco falhou!");
+		}
+		
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
