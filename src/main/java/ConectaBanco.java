@@ -13,11 +13,17 @@ public class ConectaBanco {
 	public static Connection getConnection() throws SQLException {
 		try {
 			Class.forName(DRIVER);
+			System.out.println(Class.forName(DRIVER));
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Where is your PostgreSQL JDBC Driver? Include in your pom.xml");
 			return null;
 		}
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+		System.out.println(URL);
+		System.out.println(USERNAME);
+		System.out.println(PASSWORD);
+
 		return conn;
 	}
 }
