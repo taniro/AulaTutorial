@@ -43,7 +43,7 @@ public class HelloServlet extends HttpServlet {
 
 		String cliente = req.getParameter("nome");
 		resp.getWriter().println("Ola, " + cliente);
-		
+
 		Connection connection = null;
 		try {
 			connection = ConectaBanco.getConnection();
