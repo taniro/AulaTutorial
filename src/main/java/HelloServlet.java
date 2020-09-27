@@ -43,11 +43,7 @@ public class HelloServlet extends HttpServlet {
 
 		String cliente = req.getParameter("nome");
 		resp.getWriter().println("Ola, " + cliente);
-
-		System.out.println(System.getenv("DATABASE_URL"));
-
-		/*
-
+		
 		Connection connection = null;
 		try {
 			connection = ConectaBanco.getConnection();
@@ -57,15 +53,14 @@ public class HelloServlet extends HttpServlet {
 
 		if(connection!= null){
 			resp.getWriter().append("A conexão com o banco foi realizada!");
+			try {
+				connection.close();
+			} catch (SQLException throwables) {
+				throwables.printStackTrace();
+			}
 		}else{
 			resp.getWriter().append("A conexão com o banco falhou!");
 		}
-
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
 
 	}
 
