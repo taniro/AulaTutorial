@@ -5,12 +5,20 @@ import java.sql.SQLException;
 public class ConectaBanco {
 
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = System.getenv("DATABASE_URL");
-	private static final String USERNAME = System.getenv("DATABASE_USER");;
-	private static final String PASSWORD = System.getenv("DATABASE_PASSWORD");;
+	private static final String HOST = System.getenv("DATABASE_HOST");
+	private static final String PORT = System.getenv("DATABASE_PORT");
+	private static final String DATABASENAME = System.getenv("DATABASE_NAME");
+	private static final String USERNAME = System.getenv("DATABASE_USER");
+	private static final String PASSWORD = System.getenv("DATABASE_PASSWORD");
 
+	private static final String URL = "jdbc:postgresql://"+HOST+":"+PORT+"/"+DATABASENAME+"?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
 
 	public static Connection getConnection() throws SQLException {
+
+		System.out.println(URL);
+		System.out.println(USERNAME);
+		System.out.println(PASSWORD);
+
 		try {
 			Class.forName(DRIVER);
 			System.out.println(Class.forName(DRIVER));
@@ -19,11 +27,7 @@ public class ConectaBanco {
 			return null;
 		}
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-		System.out.println(URL);
-		System.out.println(USERNAME);
-		System.out.println(PASSWORD);
-
+		
 		return conn;
 	}
 }
